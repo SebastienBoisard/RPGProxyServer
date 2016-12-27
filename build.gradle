@@ -1,0 +1,33 @@
+// Apply the java plugin to add support for Java
+apply plugin: 'java'
+
+//apply plugin: 'application'
+
+//mainClassName = 'rpg_proxy_server.RPGServer'
+
+sourceCompatibility = 1.8
+version = '1.0'
+jar {
+    manifest {
+        // attributes 'Implementation-Title': 'RPG Proxy Server',
+        //           'Implementation-Version': version,
+        attributes 'Main-Class': 'rpg_proxy_server.RPGProxyServer'
+    }
+}
+
+// Repositories where to find the dependencies of RGProxyServer
+repositories {
+    // Use 'jcenter' for resolving your dependencies.
+    jcenter()
+    mavenCentral()
+}
+
+// Dependencies for RPGProxyServer production and test code
+dependencies {
+
+    compile 'com.google.code.gson:gson:2.8.0'
+    compile 'net.sf.jt400:jt400:9.1'
+    compile 'org.eclipse.jetty:jetty-server:9.4.0.v20161208'
+
+    testCompile 'junit:junit:4.12'
+}
