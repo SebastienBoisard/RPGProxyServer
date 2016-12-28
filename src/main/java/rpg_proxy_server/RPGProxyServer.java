@@ -1,6 +1,9 @@
 package rpg_proxy_server;
 
 import java.io.IOException;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.Properties;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -36,7 +39,7 @@ public class RPGProxyServer extends AbstractHandler
    callRPGmain(RPGProgram __rpg_program) 
       {    
 
-         String full_program_name = "path_to_lib/"+__rpg_program.getProgramName()+".PGM";
+         String full_program_name = "/QSYS.LIB/"+__rpg_program.getLibraryName()+".LIB/"+__rpg_program.getProgramName()+".PGM";
 
          AS400 as400 = null;
      
@@ -197,11 +200,53 @@ public class RPGProxyServer extends AbstractHandler
       }
 
 
+   public void
+   loadProperties()
+      {
+         Properties properties = new Properties();
+
+         InputStream input = null;
+
+         try 
+            {
+
+               input = new FileInputStream("config.properties");
+
+               // load a properties file
+               properties.load(input);
+
+               // get the property value and print it out
+               _server = properties.getProperty("server");
+               _profil_name = properties.getProperty("profil.name");
+               _profil_password = properties.getProperty("profil.password");
+            } 
+         catch (IOException ex) 
+            {
+               ex.printStackTrace();
+            } 
+         finally 
+            {
+               if (input != null) 
+                  {
+                     try 
+                        {
+                           input.close();
+                        } 
+                     catch (IOException e) 
+                        {
+                           e.printStackTrace();
+                        }
+                  }
+            }
+      }
+
    public static void 
    main(String[] __args) 
       throws Exception
       {
+
          RPGProxyServer proxy_server = new RPGProxyServer();
+         proxy_server.loadProperties();
 
          Server server = new Server(8080);
          server.setHandler(proxy_server);
