@@ -50,7 +50,7 @@ public class RPGProxyServer extends AbstractHandler
                // Create an AS400 object  
                as400 = new AS400(_server, _profil_name, _profil_password);  
 
-               // => http://www-01.ibm.com/support/knowledgecenter/ssw_i5_54/cl/chgjob.htm
+               // Cf. http://www-01.ibm.com/support/knowledgecenter/ssw_i5_54/cl/chgjob.htm
                CommandCall c = new CommandCall(as400);
                c.run("CHGJOB INQMSGRPY(*DFT)");
 
@@ -244,7 +244,6 @@ public class RPGProxyServer extends AbstractHandler
    main(String[] __args) 
       throws Exception
       {
-
          RPGProxyServer proxy_server = new RPGProxyServer();
          proxy_server.loadProperties();
 

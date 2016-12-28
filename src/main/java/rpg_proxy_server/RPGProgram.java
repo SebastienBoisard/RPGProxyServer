@@ -50,9 +50,9 @@ public class RPGProgram
                JsonObject json_parameter = program_parameters.get(i).getAsJsonObject();
 
                RPGParameter rpg_parameter = new RPGParameter();
-               rpg_parameter.setName(json_parameter.get("nom").getAsString());
-               rpg_parameter.setDirection(json_parameter.get("io").getAsString());
-               rpg_parameter.setSize(json_parameter.get("taille").getAsInt());
+               rpg_parameter.setName(json_parameter.get("name").getAsString());
+               rpg_parameter.setDirection(json_parameter.get("direction").getAsString());
+               rpg_parameter.setSize(json_parameter.get("size").getAsInt());
                rpg_parameter.setType(json_parameter.get("type").getAsString());
                rpg_parameter.setInputValue(json_parameter.get("value").getAsString());
 
