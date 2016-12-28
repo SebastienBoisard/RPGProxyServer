@@ -33,7 +33,6 @@ public class RPGProgram
          try 
             {
                json_program = new JsonParser().parse(__data).getAsJsonObject();
-               System.out.println(json_program);
             } 
          catch (Exception e) 
             {
@@ -58,8 +57,6 @@ public class RPGProgram
                rpg_parameter.setInputValue(json_parameter.get("value").getAsString());
 
                _parameters[i] = rpg_parameter;
-
-               // System.out.println("_parameters["+i+"]: "+_parameters[i]);
             }
       }
 
